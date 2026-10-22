@@ -1,0 +1,26 @@
+name: Enlarge photos
+
+on:
+  workflow_dispatch:
+    inputs:
+      supplier:
+        description: "Supplier (musai)"
+        default: "musai"
+
+permissions:
+  contents: write
+
+jobs:
+  enlarge:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: pip install pillow
+      - run: python3 enlarge.py "${{ github.event.inputs.supplier }}"
+      - run: |
+          git config user.name "photo-bot"
+          git config user.email "photo-bot@users.noreply.github.com"
+          git add .
+          git diff --cached --quiet || git commit -qm "Enlarged photos (${{ github.event.inputs.supplier }})"
+          git pull --rebase
+          git push
