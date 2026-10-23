@@ -1,0 +1,19 @@
+name: crop
+on:
+  workflow_dispatch:
+    inputs:
+      url: {description: "Image URL", required: true}
+      box: {description: "x0 y0 x1 y1", required: true}
+      out: {description: "Output path, e.g. banners/name.jpg", required: true}
+permissions:
+  contents: write
+jobs:
+  crop:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: pip install pillow
+      - run: python3 crop.py "${{ inputs.url }}" ${{ inputs.box }} "${{ inputs.out }}"
+      - run: |
+          git config user.name "feed-bot"; git config user.email "feed-bot@users.noreply.github.com"
+          git add "${{ inputs.out }}"; git commit -m "Crop ${{ inputs.out }}"; git pull --rebase; git push
