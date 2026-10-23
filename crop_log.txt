@@ -1,8 +1,2 @@
 source size (3168, 1344)
-Traceback (most recent call last):
-  File "/home/runner/work/shop-images/shop-images/crop.py", line 8, in <module>
-    img.crop((x0, y0, x1, y1)).save(out, quality=92)
-  File "/home/runner/.local/lib/python3.12/site-packages/PIL/Image.py", line 2707, in save
-    fp = builtins.open(filename, "w+b")
-         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-FileNotFoundError: [Errno 2] No such file or directory: 'banners/corporate-fashion.jpg'
+saved banners/corporate-fashion.jpg (2437, 1034)
