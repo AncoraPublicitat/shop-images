@@ -1,2 +1,2 @@
-source size (3168, 1344)
-saved banners/corporate-fashion.jpg (2437, 1034)
+source size (2688, 1152)
+saved banners/stricker.jpg (2007, 860)
